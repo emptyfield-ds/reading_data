@@ -1,9 +1,10 @@
 ---
 title: "Import Data"
-output: html_document
+format: html
 ---
 
-```{r setup}
+```{r}
+#| label: setup
 library(tidyverse)
 library(haven)
 ```
@@ -30,7 +31,7 @@ readr is a core member of the tidyverse. It is loaded every time you call `libra
 
 ## Sample data
 
-There are two datasets stored alongside this notebook: `diabetes` and `nhgh`. Both are datasets related to diabetes. 
+We have several files containing the  `diabetes` dataset (it's the same data but in CSV, SAS, Stata, etc, formats).
 
 ## Importing Data
 
@@ -38,7 +39,8 @@ To import `diabetes.csv`, use the readr functions that reads `.csv` files, `read
 
 So, if `file_name.csv` is saved in your working directory, you can read it in with the command.
 
-```{r eval = FALSE}
+```{r}
+#| eval: false
 #  there's no file called file_name.csv, so this won't work
 dataset <- read_csv("file_name.csv")
 dataset
@@ -84,7 +86,8 @@ tibble is a core member of the tidyverse. It is loaded every time you call `libr
 
 It's very common to demarcate missing values with some code, like "-99" or "8888". The `na` option will replace such values with `NA`, the R object type for missing values.
 
-```{r eval = FALSE}
+```{r}
+#| eval: false
 read_csv(
   "a,b,c,d
   1,-99,3,4
@@ -101,7 +104,8 @@ The read functions in readr try to guess each data type, but sometimes it's wron
 
 To do this, add the argument `col_types` to `read_csv()` and set it equal to a list. readr has several functions that start with `col` that represent data types. We'll go over data and object types, including lists, later in the week.
 
-```{r eval = FALSE}
+```{r}
+#| eval: false
 diabetes <- read_csv("diabetes.csv", col_types = list(id = col_character()))
 ```
 
@@ -158,7 +162,8 @@ To use a write function, first give it the name of the data frame to save, then 
 
 For example, if we want to save a file after cleaning the data in the `diabetes` data set, we can use `write_csv()`. Note 
 
-```{r eval = FALSE}
+```{r}
+#| eval: false
 write_csv(diabetes, file = "diabetes-clean.csv")
 ```
 
